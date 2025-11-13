@@ -35,18 +35,24 @@ fi
 
 echo "🚀 Installing Nginx + PHP $PHP_VERSION + MySQL $MYSQL_VERSION for $DOMAIN"
 
-# --- Update system ---
-apt update -y && apt upgrade -y
-
 # --- Install prerequisites ---
-apt install -y software-properties-common ca-certificates curl lsb-release apt-transport-https
+apt update -y
+apt install -y software-properties-common ca-certificates curl lsb-release apt-transport-https gnupg2
 
 # --- Add Ondrej PHP PPA (modern PHP versions) ---
 if ! grep -q "ondrej/php" /etc/apt/sources.list /etc/apt/sources.list.d/* 2>/dev/null; then
+  echo "🔄 Adding PHP $PHP_VERSION repository..."
   add-apt-repository ppa:ondrej/php -y
+  if [ $? -ne 0 ]; then
+    echo "❌ Failed to add PHP repository. Trying alternative method..."
+    apt install -y software-properties-common
+    LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y || {
+      echo "❌ Failed to add PHP repository. Please check your internet connection and try again."
+      exit 1
+    }
+  fi
+  apt update -y
 fi
-
-apt update -y
 
 # --- Install Nginx ---
 apt install -y nginx certbot python3-certbot-nginx unzip curl
