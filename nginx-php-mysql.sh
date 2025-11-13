@@ -1,6 +1,6 @@
 #!/bin/bash
-# Usage: sudo bash nginx-php-mysql example.com --php=8.3 --mysql=8.0
-# One-liner: bash <(curl -fsSL https://raw.githubusercontent.com/haruncpi/vps-utils/main/nginx-php-mysql.sh) example.com --php=8.3 --mysql=8.0
+# Usage: sudo bash nginx-php-mysql example.com --php=8.2 --mysql=8.0
+# One-liner: bash <(curl -fsSL https://raw.githubusercontent.com/haruncpi/vps-utils/main/nginx-php-mysql.sh) example.com --php=8.2 --mysql=8.0
 
 DOMAIN=""
 PHP_VERSION="8.2"
