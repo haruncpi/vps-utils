@@ -27,7 +27,7 @@ for arg in "$@"; do
 done
 
 if [ -z "$DOMAIN" ]; then
-  echo "❌ Usage: sudo bash nginx-php-mysql yourdomain.com [--php=8.3] [--mysql=8.0]"
+  echo "❌ Usage: sudo bash nginx-php-mysql yourdomain.com [--php=8.2] [--mysql=8.0]"
   exit 1
 fi
 
